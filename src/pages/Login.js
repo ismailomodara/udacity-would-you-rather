@@ -5,24 +5,33 @@ import '../assets/css/login.scss'
 
 class Login extends Component {
   state = {
-    authedUser: 'sarahedo'
+    authedUser: ''
   }
+
   setSelectedUser = (id) => {
-    const { dispatch } = this.props
-    dispatch(setAuthedUser(id))
+    this.setState({ authedUser: id})
   }
+
+  login = () => {
+    const { dispatch } = this.props
+    dispatch(setAuthedUser(this.state.authedUser))
+  }
+
   render() {
     return (
         <div>
           <h1>Login now</h1>
           <ul>
             {Object.keys(this.props.users).map((id) => (
-                <li key={id}>
-                  <img src={this.props.users[id].avatarURL} alt={id} />
-                  <span>{this.props.users[id].name}</span>
+                <li key={id} onClick={() => this.setSelectedUser(id)} className={this.state.authedUser === id ? 'selected' : ''}>
+                  <div>
+                    <img src={this.props.users[id].avatarURL} alt={id} />
+                    <span>{this.props.users[id].name}</span>
+                  </div>
                 </li>
             ))}
           </ul>
+          <button onClick={() => this.login()}>Login</button>
         </div>
     )
   }
