@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from './actions/shared'
 import Login from './pages/Login'
+import Home from './pages/Home';
 
 class App extends Component {
   componentDidMount() {
@@ -13,9 +14,9 @@ class App extends Component {
         <Router>
           <div className='container'>
             {this.props.authedUser === null
-                ? <Login />
+                ? <Route path='/' exact component={Login} />
                 : <div>
-                  <h1>Logged In</h1>
+                  <Route path='/home' exact component={Home} />
                 </div>}
           </div>
         </Router>

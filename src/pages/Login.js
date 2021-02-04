@@ -1,11 +1,13 @@
 import React, { Component }  from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from "../actions/authedUser";
+import { Redirect } from 'react-router-dom'
 import '../assets/css/login.scss'
 
 class Login extends Component {
   state = {
-    authedUser: ''
+    authedUser: '',
+    loggedIn: false
   }
 
   setSelectedUser = (id) => {
@@ -13,11 +15,25 @@ class Login extends Component {
   }
 
   login = () => {
+    const { authedUser, loggedIn } = this.state
+
     const { dispatch } = this.props
-    dispatch(setAuthedUser(this.state.authedUser))
+    dispatch(setAuthedUser(authedUser))
+
+    this.setState(() => ({
+      authedUser: '',
+      loggedIn: !loggedIn
+    }))
+
   }
 
   render() {
+    const { authedUser, loggedIn } = this.state
+
+    if(loggedIn) {
+      return <Redirect to='/home' />
+    }
+
     return (
         <div>
           <h1>Login now</h1>
@@ -31,7 +47,12 @@ class Login extends Component {
                 </li>
             ))}
           </ul>
-          <button onClick={() => this.login()}>Login</button>
+          <button
+              type='submit'
+              disabled={authedUser === ''}
+              onClick={() => this.login()}>
+            Login
+          </button>
         </div>
     )
   }
