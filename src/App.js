@@ -13,10 +13,10 @@ class App extends Component {
     return (
         <Router>
           <div className='container'>
-            {this.props.authedUser
-                ? <Route path='/' exact component={Home} />
+            {!this.props.authedUser
+                ? <Route path='/' exact component={Login} />
                 : <div>
-                  <Route path='/home' exact component={Login} />
+                  <Route path='/home' exact component={Home} />
                 </div>}
           </div>
         </Router>
@@ -26,7 +26,7 @@ class App extends Component {
 
 function mapStateToProps ({ authedUser }) {
   return {
-    authedUser: 'sarahedo'
+    authedUser
   }
 }
 

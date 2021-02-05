@@ -14,11 +14,11 @@ class Home extends Component {
   render() {
 
     const { view } = this.state
-    const { unanswered, answered } = this.props
+    const { authedUser, unanswered, answered } = this.props
 
     return (
         <div>
-          <h1>Home</h1>
+          <h1>Home ({authedUser})</h1>
           <div className="toggle">
             <div
                 className={`toggle__item ${view === 'unanswered' ? 'selected' : ''}`}
@@ -45,7 +45,7 @@ function mapStateToProps ({ authedUser, users, questions }) {
   let answered = []
 
   Object.keys(questions).forEach(question => {
-    if(users['sarahedo'].answers[question]) {
+    if(users[authedUser].answers[question]) {
       answered.push(question)
     } else {
       unanswered.push(question)
@@ -53,6 +53,7 @@ function mapStateToProps ({ authedUser, users, questions }) {
   })
 
   return {
+    authedUser,
     unanswered,
     answered,
     questions

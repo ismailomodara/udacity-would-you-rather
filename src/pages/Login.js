@@ -21,18 +21,16 @@ class Login extends Component {
     dispatch(setAuthedUser(authedUser))
 
     this.setState(() => ({
-      authedUser: '',
+      authedUser: authedUser,
       loggedIn: !loggedIn
     }))
 
+    localStorage.setItem('user', authedUser)
+    this.props.history.push('/home')
   }
 
   render() {
-    const { authedUser, loggedIn } = this.state
-
-    if(loggedIn) {
-      return <Redirect to='/home' />
-    }
+    const { authedUser } = this.state
 
     return (
         <div>
