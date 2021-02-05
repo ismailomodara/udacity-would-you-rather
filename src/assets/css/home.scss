@@ -1,27 +1,21 @@
-ul {
-  li {
-    border: 1px solid rgba(0, 0, 0, 0.6);
-    border-radius: 8px;
-    padding: 10px;
+.toggle {
+  display: flex;
+
+  &__item {
+    height: 40px;
     display: flex;
     align-items: center;
+    justify-content: center;
+    border: 1px solid #282c34;
+    border-radius: 6px;
+    padding: 0 20px;
+    background: transparent;
+    color: #282c34;
     cursor: pointer;
 
     &.selected {
-      border-color: #61dafb;
-    }
-
-    img {
-      height: 60px;
-      width: 60px;
-      border-radius: 8px;
-      margin-right: 10px;
-      object-fit: cover;
-    }
-
-    span {
-      font-size: 18px;
-      line-height: 1;
+      background: #282c34;
+      color: #fff;
     }
   }
 }
