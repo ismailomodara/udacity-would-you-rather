@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { handleInitialData } from './actions/shared'
 import Login from './pages/Login'
 import Home from './pages/Home';
+import Question from "./pages/Question";
 
 class App extends Component {
   componentDidMount() {
@@ -17,6 +18,7 @@ class App extends Component {
                 ? <Route path='/' exact component={Login} />
                 : <div>
                   <Route path='/home' exact component={Home} />
+                  <Route path='/question/:id' component={Question} />
                 </div>}
           </div>
         </Router>

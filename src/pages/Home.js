@@ -1,4 +1,6 @@
 import React, { Component }  from 'react'
+import QuestionUnanswered from "../components/QuestionUnanswered";
+import QuestionAnswered from "../components/QuestionAnswered";
 import { connect } from 'react-redux'
 import '../assets/css/home.scss'
 
@@ -11,10 +13,14 @@ class Home extends Component {
     this.setState(() => ({ view: view }))
   }
 
+  viewQuestion = (id) => {
+    this.props.history.push(`/question/${id}`)
+  }
+
   render() {
 
     const { view } = this.state
-    const { authedUser, unanswered, answered } = this.props
+    const { authedUser, questions, unanswered, answered } = this.props
 
     return (
         <div>
@@ -32,9 +38,11 @@ class Home extends Component {
             </div>
           </div>
           {view === 'unanswered' ?
-
-             <div> {unanswered.map((question, index) => <p key={index}>{question}</p>)}</div> :
-              <div> {answered.map((question, index) => <p key={index}>{question}</p>)}</div> }
+              unanswered.map((question, index) =>
+                  <QuestionUnanswered key={index} question={questions[question]} view={this.viewQuestion}/>) :
+              answered.map((question, index) =>
+                  <QuestionAnswered key={index} question={questions[question]} />)
+          }
         </div>
     )
   }
