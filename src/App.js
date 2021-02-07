@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from './actions/shared'
+import Nav from "./components/Nav";
 import Login from './pages/Login'
 import Home from './pages/Home';
 import Question from "./pages/Question";
@@ -17,6 +18,7 @@ class App extends Component {
             {!this.props.authedUser
                 ? <Route path='/' exact component={Login} />
                 : <div>
+                  <Nav />
                   <Route path='/home' exact component={Home} />
                   <Route path='/question/:id' component={Question} />
                 </div>}

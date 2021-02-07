@@ -34,7 +34,7 @@ class Login extends Component {
     return (
         <div>
           <h1>Login now</h1>
-          <ul>
+          <ul className="users">
             {Object.keys(this.props.users).map((id) => (
                 <li key={id} onClick={() => this.setSelectedUser(id)} className={this.state.authedUser === id ? 'selected' : ''}>
                   <div>

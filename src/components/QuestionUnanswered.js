@@ -7,15 +7,15 @@ import '../assets/css/question.scss'
 class QuestionUnanswered extends Component {
 
   state = {
-    openPoll: false,
+    openQuestion: false,
     answer: ""
   }
 
   togglePoll = () => {
-    this.setState({ openPoll: !this.state.openPoll})
+    this.setState({ openQuestion: !this.state.openQuestion})
   }
 
-  setPollAnswer = (answer) => {
+  setQuestionAnswer = (answer) => {
     this.setState({ answer })
   }
 
@@ -34,7 +34,7 @@ class QuestionUnanswered extends Component {
 
   render() {
 
-    const { openPoll, answer } = this.state
+    const { openQuestion, answer } = this.state
     const { question, users, view } = this.props
 
     const authorImage = users[question.author].avatarURL
@@ -51,21 +51,21 @@ class QuestionUnanswered extends Component {
               <div className="question__details-text">
                 <p>Would you rather</p>
                 <div>
-                  <span onClick={() => this.togglePoll()}>{openPoll ? 'Hide' : 'See'}</span>
+                  <span onClick={() => this.togglePoll()}>{openQuestion ? 'Hide' : 'See'}</span>
                   <span onClick={() => view(question.id)}>View</span>
                 </div>
               </div>
               <p>{optionOne}</p>
               {
-                openPoll ?
+                openQuestion ?
                     <div className="question__details-options">
                       All Options
                       <div
                           className={`${answer === 'optionOne' ? 'selected' : ''}`}
-                          onClick={() => this.setPollAnswer('optionOne')}>{optionOne}</div>
+                          onClick={() => this.setQuestionAnswer('optionOne')}>{optionOne}</div>
                       <div
                           className={`${answer === 'optionTwo' ? 'selected' : ''}`}
-                          onClick={() => this.setPollAnswer('optionTwo')}>{optionTwo}</div>
+                          onClick={() => this.setQuestionAnswer('optionTwo')}>{optionTwo}</div>
                       <button onClick={(event) => this.saveAnswer(event)}>Submit</button>
                     </div> : ''
               }

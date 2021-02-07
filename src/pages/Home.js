@@ -20,7 +20,7 @@ class Home extends Component {
   render() {
 
     const { view } = this.state
-    const { authedUser, questions, unanswered, answered } = this.props
+    const { authedUser, unanswered, answered } = this.props
 
     return (
         <div>
@@ -39,9 +39,9 @@ class Home extends Component {
           </div>
           {view === 'unanswered' ?
               unanswered.map((question, index) =>
-                  <QuestionUnanswered key={index} question={questions[question]} view={this.viewQuestion}/>) :
+                  <QuestionUnanswered key={index} question={question} view={this.viewQuestion}/>) :
               answered.map((question, index) =>
-                  <QuestionAnswered key={index} question={questions[question]} />)
+                  <QuestionAnswered key={index} question={question} />)
           }
         </div>
     )
@@ -54,17 +54,16 @@ function mapStateToProps ({ authedUser, users, questions }) {
 
   Object.keys(questions).forEach(question => {
     if(users[authedUser].answers[question]) {
-      answered.push(question)
+      answered.push(questions[question])
     } else {
-      unanswered.push(question)
+      unanswered.push(questions[question])
     }
   })
 
   return {
     authedUser,
-    unanswered,
-    answered,
-    questions
+    unanswered: unanswered.sort((a,b) => a.timestamp > b.timestamp ? -1 : 1),
+    answered: answered.sort((a,b) => a.timestamp > b.timestamp ? -1 : 1),
   }
 }
 
