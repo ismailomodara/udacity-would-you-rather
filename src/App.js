@@ -5,6 +5,7 @@ import { handleInitialData } from './actions/shared'
 import Nav from "./components/Nav";
 import Login from './pages/Login'
 import Home from './pages/Home';
+import AddQuestion from "./pages/AddQuestion";
 import Question from "./pages/Question";
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
                 : <div>
                   <Nav />
                   <Route path='/home' exact component={Home} />
+                  <Route path='/add' component={AddQuestion} />
                   <Route path='/question/:id' component={Question} />
                 </div>}
           </div>

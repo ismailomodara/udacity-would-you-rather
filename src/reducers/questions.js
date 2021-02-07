@@ -1,4 +1,4 @@
-import { SET_QUESTIONS, SET_QUESTION_ANSWER } from '../actions/questions'
+import { SET_QUESTIONS, ADD_QUESTION, SET_QUESTION_ANSWER } from '../actions/questions'
 
 export default function questions (state = {}, action) {
   switch(action.type) {
@@ -6,6 +6,11 @@ export default function questions (state = {}, action) {
       return {
         ...state,
         ...action.questions
+      }
+    case ADD_QUESTION :
+      return {
+        ...state,
+        [action.question.id]: action.question
       }
     case SET_QUESTION_ANSWER :
       const { authedUser, qid, answer } = action.payload
