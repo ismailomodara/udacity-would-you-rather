@@ -1,5 +1,5 @@
 export const SET_USERS = 'SET_USERS'
-export const SET_USER = 'SET_USER'
+export const SET_USER_QUESTION = 'SET_USER_QUESTION'
 export const SET_USER_ANSWER = 'SET_USER_ANSWER'
 
 export function setUsers (users) {
@@ -9,23 +9,23 @@ export function setUsers (users) {
   }
 }
 
-export function setUser (user) {
+export function setUserQuestion (user) {
   return {
-    type: SET_USER,
+    type: SET_USER_QUESTION,
     user,
   }
 }
 
-export function handleUser (user) {
+export function handleUserQuestion ({ author, id }) {
   return (dispatch) => {
-    dispatch(setUser(user))
+    dispatch(setUserQuestion({ author, id }))
   }
 }
 
-export function setUserAnswer (payload) {
+export function setUserAnswer (user) {
   return {
     type: SET_USER_ANSWER,
-    payload,
+    user,
   }
 }
 

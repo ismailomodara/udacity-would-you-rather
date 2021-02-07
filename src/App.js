@@ -7,6 +7,7 @@ import Login from './pages/Login'
 import Home from './pages/Home';
 import AddQuestion from "./pages/AddQuestion";
 import Question from "./pages/Question";
+import Leaderboard from "./pages/Leaderboard";
 
 class App extends Component {
   componentDidMount() {
@@ -23,6 +24,7 @@ class App extends Component {
                   <Route path='/home' exact component={Home} />
                   <Route path='/add' component={AddQuestion} />
                   <Route path='/question/:id' component={Question} />
+                  <Route path='/leaderboard' component={Leaderboard} />
                 </div>}
           </div>
         </Router>

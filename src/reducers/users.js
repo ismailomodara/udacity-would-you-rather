@@ -1,4 +1,4 @@
-import { SET_USERS, SET_USER, SET_USER_ANSWER } from '../actions/users'
+import { SET_USERS, SET_USER_QUESTION, SET_USER_ANSWER } from '../actions/users'
 
 export default function users (state = {}, action) {
   switch(action.type) {
@@ -7,9 +7,8 @@ export default function users (state = {}, action) {
         ...state,
         ...action.users
       }
-    case SET_USER:
-      const { author, id } = action
-
+    case SET_USER_QUESTION:
+      const { author, id } = action.user
       let user = {
         ...state[author],
         questions: state[author].questions.concat(id)
@@ -19,7 +18,7 @@ export default function users (state = {}, action) {
         [author]: user
       }
     case SET_USER_ANSWER :
-      const { authedUser, qid, answer } = action.payload
+      const { authedUser, qid, answer } = action.user
 
       let userAnswer = {
         ...state[authedUser],
