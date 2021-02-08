@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from './actions/shared'
-import './App.css'
+import './assets/css/main.scss'
 import Nav from "./components/Nav";
 import Login from './pages/Login'
 import Home from './pages/Home';
@@ -17,25 +17,27 @@ class App extends Component {
   render() {
     return (
         <Router>
-          <div className='container'>
-            {!this.props.authedUser
-                ? <Route path='/' exact component={Login} />
-                : <div>
-                  <Nav />
-                  <Route path='/home' exact component={Home} />
-                  <Route path='/add' component={AddQuestion} />
-                  <Route path='/question/:id' component={Question} />
-                  <Route path='/leaderboard' component={Leaderboard} />
-                </div>}
-          </div>
+          {!this.props.authedUser
+              ? <Route path='/' exact component={Login} />
+              : <div className="page">
+                  <Nav user={this.props.user} />
+                  <div className="page__content container">
+                    <Route path='/home' exact component={Home} />
+                    <Route path='/add' component={AddQuestion} />
+                    <Route path='/question/:id' component={Question} />
+                    <Route path='/leaderboard' component={Leaderboard} />
+                  </div>
+                </div>
+          }
         </Router>
     )
   }
 }
 
-function mapStateToProps ({ authedUser }) {
+function mapStateToProps ({ authedUser, users }) {
   return {
-    authedUser
+    authedUser,
+    user: users[authedUser]
   }
 }
 
