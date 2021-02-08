@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from './actions/shared'
+import './App.css'
 import Nav from "./components/Nav";
 import Login from './pages/Login'
 import Home from './pages/Home';

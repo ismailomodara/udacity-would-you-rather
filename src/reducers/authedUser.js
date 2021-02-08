@@ -5,6 +5,6 @@ export default function authedUser (state = null, action) {
     case SET_AUTHED_USER :
       return action.id
     default :
-      return localStorage.getItem('user') || state
+      return state
   }
 }

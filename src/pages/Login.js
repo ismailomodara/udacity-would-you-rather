@@ -32,24 +32,33 @@ class Login extends Component {
     const { authedUser } = this.state
 
     return (
-        <div>
-          <h1>Login now</h1>
-          <ul className="users">
-            {Object.keys(this.props.users).map((id) => (
-                <li key={id} onClick={() => this.setSelectedUser(id)} className={this.state.authedUser === id ? 'selected' : ''}>
-                  <div>
-                    <img src={this.props.users[id].avatarURL} alt={id} />
-                    <span>{this.props.users[id].name}</span>
-                  </div>
-                </li>
-            ))}
-          </ul>
-          <button
-              type='submit'
-              disabled={authedUser === ''}
-              onClick={() => this.login()}>
-            Login
-          </button>
+        <div className="login">
+          <div className="login__card">
+            <div className="login__card-title">
+              <h6>Welcome to the </h6>
+              <h5>Would You Rather App</h5>
+              <p>Please select a user to continue</p>
+            </div>
+            <div className="login__card-content">
+              <ul>
+                {Object.keys(this.props.users).map((id) => (
+                    <li key={id} onClick={() => this.setSelectedUser(id)} className={this.state.authedUser === id ? 'selected' : ''}>
+                      <div>
+                        <img src={this.props.users[id].avatarURL} alt={id} />
+                        <span>{this.props.users[id].name}</span>
+                      </div>
+                    </li>
+                ))}
+              </ul>
+              <button
+                  type='submit'
+                  className={authedUser === '' ? 'disabled' : ''}
+                  disabled={authedUser === ''}
+                  onClick={() => this.login()}>
+                Login
+              </button>
+            </div>
+          </div>
         </div>
     )
   }
