@@ -1,0 +1,60 @@
+.leaderboard {
+  text-align: center;
+
+  .user {
+    background: #ffffff;
+    width: 60%;
+    margin: 0 auto 20px;
+    border-radius: 8px;
+    padding: 50px 30px;
+    box-shadow: -8px 32px 50px rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: space-between;
+
+    .user__image {
+      height: 80px;
+      width: 80px;
+      border-radius: 100%;
+      object-fit: cover;
+      margin-right: 20px;
+    }
+
+    .user__details {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &-text {
+        text-align: left;
+        h5 {
+          font-size: 1.2rem;
+        }
+
+        div {
+          display: flex;
+          align-items: center;
+
+          p {
+            margin-right: 20px;
+          }
+        }
+      }
+
+      &-total {
+        span {
+          height: 60px;
+          width: 60px;
+          border-radius: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: #61dafb;
+          font-size: 1.3rem;
+          color: #282c34;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}

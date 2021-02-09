@@ -1,5 +1,6 @@
 import React, { Component }  from 'react'
 import { connect } from 'react-redux'
+import User from "../components/User";
 
 class Leaderboard extends Component {
 
@@ -9,10 +10,9 @@ class Leaderboard extends Component {
 
     return (
         <div>
-          <h1>Leaderboard</h1>
           <div className="leaderboard">
             {
-              sortedUsers.map(user => <p>{user.name} {user.total} {Object.keys(user.answers).length} {user.questions.length}</p>)
+              sortedUsers.map((user, index) => <User key={index} user={user} />)
             }
           </div>
         </div>
