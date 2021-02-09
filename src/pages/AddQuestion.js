@@ -37,7 +37,7 @@ class AddQuestion extends Component {
 
 
     if (toHome === true) {
-      return <Redirect to='/' />
+      return <Redirect to='/home' />
     }
 
     return (

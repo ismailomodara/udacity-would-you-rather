@@ -1,32 +1,43 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import '../assets/css/nav.scss'
+import {setAuthedUser} from "../actions/authedUser";
+import {connect} from "react-redux";
 
-export default function Nav (props) {
-  return (
-      <nav className='nav'>
-        <div className="container">
-          <ul>
-            <li>
-              <NavLink to='/' exact activeClassName='active'>
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to='/add' activeClassName='active'>
-                New Question
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to='/leaderboard' activeClassName='active'>
-                Leaderboard
-              </NavLink>
-            </li>
-          </ul>
-          <div className="user">
-            <img src={props.user.avatarURL} alt="" />
-            <p>{props.user.name}</p>
-            <span>
+class Nav extends Component {
+
+  logout = () => {
+    this.props.dispatch(setAuthedUser(''))
+    window.location.href = "http://localhost:3000"
+  }
+
+  render() {
+    const props = this.props
+
+    return (
+        <nav className='nav'>
+          <div className="container">
+            <ul>
+              <li>
+                <NavLink to='/home' exact activeClassName='active'>
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to='/add' activeClassName='active'>
+                  New Question
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to='/leaderboard' activeClassName='active'>
+                  Leaderboard
+                </NavLink>
+              </li>
+            </ul>
+            <div className="user">
+              <img src={props.user.avatarURL} alt="" />
+              <p>{props.user.name}</p>
+              <span onClick={() => this.logout()}>
               <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -42,9 +53,11 @@ export default function Nav (props) {
               </svg>
               Logout
             </span>
+            </div>
           </div>
-        </div>
-      </nav>
-  )
+        </nav>
+    )
+  }
 }
 
+export default connect()(Nav)

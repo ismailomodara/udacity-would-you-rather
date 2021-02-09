@@ -8,6 +8,11 @@ class Home extends Component {
     view: 'unanswered'
   }
 
+  componentDidMount() {
+    console.log(this.props)
+    // window.location.href = "http://localhost:3000"
+  }
+
   updateView = (view) => {
     this.setState(() => ({ view: view }))
   }
@@ -59,6 +64,7 @@ function mapStateToProps ({ authedUser, users, questions }) {
   })
 
   return {
+    authedUser,
     unanswered: unanswered.sort((a,b) => a.timestamp > b.timestamp ? -1 : 1),
     answered: answered.sort((a,b) => a.timestamp > b.timestamp ? -1 : 1),
   }

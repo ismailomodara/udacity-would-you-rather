@@ -24,8 +24,7 @@ class Login extends Component {
       loggedIn: !loggedIn
     }))
 
-    localStorage.setItem('user', authedUser)
-    this.props.history.push('/')
+    this.props.history.push('/home')
   }
 
   render() {

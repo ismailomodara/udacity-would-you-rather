@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import {BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from './actions/shared'
 import './assets/css/main.scss'
@@ -13,16 +13,19 @@ import Leaderboard from "./pages/Leaderboard";
 class App extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData())
+    if(!this.props.authedUser && window.location.pathname !== '/') {
+      window.location.href = "http://localhost:3000"
+    }
   }
   render() {
     return (
         <Router>
           {!this.props.authedUser
-              ? <Route path='/login' exact component={Login} />
+              ? <Route path='/' exact component={Login} />
               : <div className="page">
                   <Nav user={this.props.user} />
                   <div className="page__content container">
-                    <Route path='/' exact component={Home} />
+                    <Route path='/home' exact component={Home} />
                     <Route path='/add' component={AddQuestion} />
                     <Route path='/question/:id' component={Question} />
                     <Route path='/leaderboard' component={Leaderboard} />
