@@ -34,12 +34,14 @@ class QuestionAnswered extends Component {
                     className={`${authedUserAnswer === 'optionOne' ? 'selected' : ''}`}>
                   <span style={{width: `${(optionOneVotes / totalVotes) * 100}%`}}></span>
                   <p>{optionOne}?</p>
+                  <p>{`${(optionOneVotes / totalVotes) * 100}%`}</p>
                   <p>{optionOneVotes} / {totalVotes} votes</p>
                   </div>
                 <div
                     className={`${authedUserAnswer === 'optionTwo' ? 'selected' : ''}`}>
                   <span style={{width: `${(optionTwoVotes / totalVotes) * 100}%`}}></span>
                   <p>{optionTwo}?</p>
+                  <p>{`${(optionTwoVotes / totalVotes) * 100}%`}</p>
                   <p>{optionTwoVotes} / {totalVotes} votes</p>
                 </div>
               </div>
