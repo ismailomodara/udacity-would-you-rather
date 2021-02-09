@@ -21,8 +21,8 @@ class Home extends Component {
   }
 }
 
-function mapStateToProps ({ authedUser, questions }, props) {
-  const { id } = props.match.params
+function mapStateToProps ({ authedUser, questions }) {
+  const id = window.location.pathname.split('/')[2]
   const question = questions[id]
 
   return {

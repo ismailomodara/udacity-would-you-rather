@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component, Fragment} from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import { connect } from 'react-redux'
@@ -15,29 +15,28 @@ import PrivateRoute from "./components/PrivateRoute"
 class App extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData())
-    if(!this.props.authedUser && window.location.pathname !== '/') {
-      window.location.href = "http://localhost:3000"
-    }
   }
   render() {
     return (
         <Router>
-          { this.props.authedUser && <Nav user={this.props.user} /> }
-          <Switch>
-            <Route path='/' exact component={Login} />
-            <PrivateRoute path="/home">
-              <Home />
-            </PrivateRoute>
-            <PrivateRoute path="/add">
-              <AddQuestion />
-            </PrivateRoute>
-            <PrivateRoute path="/question/:id">
-              <Question />
-            </PrivateRoute>
-            <PrivateRoute path="/leaderboard">
-              <Leaderboard />
-            </PrivateRoute>
-          </Switch>
+          <Fragment>
+            { this.props.authedUser && <Nav user={this.props.user} /> }
+            <Switch>
+              <Route path='/' exact component={Login} />
+              <PrivateRoute path="/home">
+                <Home />
+              </PrivateRoute>
+              <PrivateRoute path="/add">
+                <AddQuestion />
+              </PrivateRoute>
+              <PrivateRoute path="/question/:id">
+                <Question />
+              </PrivateRoute>
+              <PrivateRoute path="/leaderboard">
+                <Leaderboard />
+              </PrivateRoute>
+            </Switch>
+          </Fragment>
         </Router>
     )
   }

@@ -12,10 +12,6 @@ class Home extends Component {
     this.setState(() => ({ view: view }))
   }
 
-  viewQuestion = (id) => {
-    this.props.history.push(`/question/${id}`)
-  }
-
   render() {
 
     const { view } = this.state
