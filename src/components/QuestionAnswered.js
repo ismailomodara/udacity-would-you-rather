@@ -13,16 +13,35 @@ class QuestionAnswered extends Component {
     const optionOne = question.optionOne.text
     const optionTwo = question.optionTwo.text
 
+    const optionOneVotes = question.optionOne.votes.length
+    const optionTwoVotes = question.optionTwo.votes.length
+    const totalVotes =  optionOneVotes + optionTwoVotes
+
     return (
-        <div className="question">
-          <p className="question__title">Asked by {authorName}</p>
+        <div className="question answered">
+          <div className="question__title">
+            <p>Asked by {authorName}</p>
+          </div>
           <div>
             <img className="question__image" src={authorImage} alt="" />
             <div className="question__details">
               <div className="question__details-text">
+                <h4>Results</h4>
+              </div>
+              <div className="question__details-options">
                 <p>Would you rather</p>
-                <p>{optionOne} - {authedUserAnswer === 'optionOne' ? <span>Your answer</span> : '' }</p>
-                <p>{optionTwo} - {authedUserAnswer === 'optionTwo' ? <span>Your answer</span> : '' }</p>
+                <div
+                    className={`${authedUserAnswer === 'optionOne' ? 'selected' : ''}`}>
+                  <span style={{width: `${(optionOneVotes / totalVotes) * 100}%`}}></span>
+                  <p>{optionOne}?</p>
+                  <p>{optionOneVotes} / {totalVotes} votes</p>
+                  </div>
+                <div
+                    className={`${authedUserAnswer === 'optionTwo' ? 'selected' : ''}`}>
+                  <span style={{width: `${(optionTwoVotes / totalVotes) * 100}%`}}></span>
+                  <p>{optionTwo}?</p>
+                  <p>{optionTwoVotes} / {totalVotes} votes</p>
+                </div>
               </div>
             </div>
           </div>

@@ -18,11 +18,11 @@ class App extends Component {
     return (
         <Router>
           {!this.props.authedUser
-              ? <Route path='/' exact component={Login} />
+              ? <Route path='/login' exact component={Login} />
               : <div className="page">
                   <Nav user={this.props.user} />
                   <div className="page__content container">
-                    <Route path='/home' exact component={Home} />
+                    <Route path='/' exact component={Home} />
                     <Route path='/add' component={AddQuestion} />
                     <Route path='/question/:id' component={Question} />
                     <Route path='/leaderboard' component={Leaderboard} />

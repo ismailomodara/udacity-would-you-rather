@@ -12,7 +12,6 @@ class Home extends Component {
 
     return (
         <div>
-          <h1>Question </h1>
           {questionAnsweredByUser ?
             <QuestionAnswered question={question} /> :
             <QuestionUnanswered question={question}  />

@@ -7,7 +7,6 @@ import '../assets/css/question.scss'
 class QuestionUnanswered extends Component {
 
   state = {
-    openQuestion: false,
     answer: ""
   }
 
@@ -30,12 +29,13 @@ class QuestionUnanswered extends Component {
     dispatch(handleQuestionAnswer(payload))
     dispatch(handleUserAnswer(payload))
 
+    this.setState({ openQuestion: false })
   }
 
   render() {
 
-    const { openQuestion, answer } = this.state
-    const { question, users, view } = this.props
+    const { answer } = this.state
+    const { question, users } = this.props
 
     const authorImage = users[question.author].avatarURL
     const authorName = users[question.author].name
@@ -44,31 +44,28 @@ class QuestionUnanswered extends Component {
 
     return (
         <div className="question">
-          <p className="question__title">{authorName}</p>
+          <div className="question__title">
+            <p>{authorName} asks</p>
+          </div>
           <div>
             <img className="question__image" src={authorImage} alt="" />
             <div className="question__details">
               <div className="question__details-text">
-                <p>Would you rather</p>
                 <div>
-                  <span onClick={() => this.togglePoll()}>{openQuestion ? 'Hide' : 'See'}</span>
-                  <span onClick={() => view(question.id)}>View</span>
+                  <p>Would you rather</p>
                 </div>
               </div>
-              <p>{optionOne}</p>
-              {
-                openQuestion ?
-                    <div className="question__details-options">
-                      All Options
-                      <div
-                          className={`${answer === 'optionOne' ? 'selected' : ''}`}
-                          onClick={() => this.setQuestionAnswer('optionOne')}>{optionOne}</div>
-                      <div
-                          className={`${answer === 'optionTwo' ? 'selected' : ''}`}
-                          onClick={() => this.setQuestionAnswer('optionTwo')}>{optionTwo}</div>
-                      <button onClick={(event) => this.saveAnswer(event)}>Submit</button>
-                    </div> : ''
-              }
+              <div className="question__details-options">
+                <div
+                    className={`${answer === 'optionOne' ? 'selected' : ''}`}
+                    onClick={() => this.setQuestionAnswer('optionOne')}>{optionOne}</div>
+                <div
+                    className={`${answer === 'optionTwo' ? 'selected' : ''}`}
+                    onClick={() => this.setQuestionAnswer('optionTwo')}>{optionTwo}</div>
+                <button
+                    onClick={(event) => this.saveAnswer(event)}
+                    disabled={answer === ''}>Submit</button>
+              </div>
             </div>
           </div>
         </div>

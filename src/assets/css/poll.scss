@@ -1,0 +1,73 @@
+.poll {
+  background: #ffffff;
+  min-height: 200px;
+  width: 50%;
+  margin: 0 auto 20px;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: -8px 32px 50px rgba(0, 0, 0, 0.08);
+
+  &__title {
+    width: 37%;
+    border-left: 4px solid #282c34;
+    text-align: left;
+    background: #eee;
+    padding: 7px 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+
+  > div {
+    display: flex;
+    align-items: center;
+
+    .poll__image {
+      height: 80px;
+      width: 80px;
+      border-radius: 100%;
+      object-fit: cover;
+      margin-right: 20px;
+    }
+
+    .poll__details {
+      width: 100%;
+
+      &-text {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+
+        div:first-child {
+          text-align: left;
+
+          p {
+            font-size: 1rem;
+
+            &:last-child {
+              font-size: 0.875rem;
+              font-style: italic;
+              opacity: 0.7;
+            }
+
+            span {
+              color: #282c34;
+              font-weight: 600;
+              opacity: 1;
+            }
+          }
+        }
+
+        .actions {
+          span {
+            padding: 5px 15px;
+            background: #61dafb;
+            color: #282c34;
+            border-radius: 100px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
