@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import {BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
 import { connect } from 'react-redux'
 import { handleInitialData } from './actions/shared'
 import './assets/css/main.scss'
@@ -9,6 +10,7 @@ import Home from './pages/Home';
 import AddQuestion from "./pages/AddQuestion";
 import Question from "./pages/Question";
 import Leaderboard from "./pages/Leaderboard";
+import PrivateRoute from "./components/PrivateRoute"
 
 class App extends Component {
   componentDidMount() {
@@ -20,18 +22,22 @@ class App extends Component {
   render() {
     return (
         <Router>
-          {!this.props.authedUser
-              ? <Route path='/' exact component={Login} />
-              : <div className="page">
-                  <Nav user={this.props.user} />
-                  <div className="page__content container">
-                    <Route path='/home' exact component={Home} />
-                    <Route path='/add' component={AddQuestion} />
-                    <Route path='/question/:id' component={Question} />
-                    <Route path='/leaderboard' component={Leaderboard} />
-                  </div>
-                </div>
-          }
+          { this.props.authedUser && <Nav user={this.props.user} /> }
+          <Switch>
+            <Route path='/' exact component={Login} />
+            <PrivateRoute path="/home">
+              <Home />
+            </PrivateRoute>
+            <PrivateRoute path="/add">
+              <AddQuestion />
+            </PrivateRoute>
+            <PrivateRoute path="/question/:id">
+              <Question />
+            </PrivateRoute>
+            <PrivateRoute path="/leaderboard">
+              <Leaderboard />
+            </PrivateRoute>
+          </Switch>
         </Router>
     )
   }
